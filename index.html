@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Relógio Digital</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Graduate&display=swap" rel="stylesheet">
+  <style>
+    /* Adicione estilos CSS conforme necessário */
+
+    *{
+        font-family: 'Graduate', serif;
+        
+    }
+
+    #relogio {
+        background-color:#003B00;
+        width: 500px;
+        color: #00FF41;
+        display: flex;
+        flex-direction: column-reverse;
+        justify-content: center;
+        align-items: center;
+        font-size: 50px;
+        font-family: Arial, sans-serif;
+        border: 10px solid #008F11;
+        border-radius: 20px;
+        
+}
+
+    h1{
+        color: #008F11;
+        text-shadow:     1px 1px 2px black,
+                        0 0 1em #008F11,
+                        0 0 0.2em #00FF41
+    }
+
+    body {
+        background-image: url('https://virtualbackgrounds.site/wp-content/uploads/2020/08/the-matrix-digital-rain.jpg');
+
+    }
+
+    div{
+        background-color: transparent;
+    }
+
+    .time{
+        background-color:#003B00;
+        display: flex;
+        flex-direction: row;
+        font-size: 100px;
+    }
+    
+    #hora::after{
+        content: ':';
+    }
+
+    #minuto::after{
+        content: ':';
+    }
+
+    #data {
+        display: flex;
+    }
+    
+    #dia::after {
+        content: '/';
+    }
+    #mes::after{
+        content: '/';
+    }
+
+    .main{
+        font-size: 26px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+
+    }
+
+  </style>
+</head>
+<body> 
+    <div class="main">
+        <h1>Relógio Digital</h1>
+        <div id="relogio">
+            <div class="time">
+                <div id="hora"></div>
+                <div id="minuto"></div>
+                <div id="segundos"></div>
+            </div>
+
+            <div id="data">
+            <div id="dia"></div>
+            <div id="mes"></div>
+            <div id="ano"></div>
+            </div>
+        </div>
+    </div>
+  <script defer>
+    function atualizarRelogio() {
+  const dataHoraAtual = new Date();
+
+  // Atualiza a hora
+  const horaElement = document.getElementById('hora');
+  horaElement.innerHTML = padZero(dataHoraAtual.getHours());
+
+  // Atualiza os minutos
+  const minutoElement = document.getElementById('minuto');
+  minutoElement.innerHTML = padZero(dataHoraAtual.getMinutes());
+
+  // Atualiza os segundos
+  const segundoElement = document.getElementById('segundos');
+  segundoElement.innerHTML = padZero(dataHoraAtual.getSeconds());
+
+  // Atualiza a data
+  const diaElement = document.getElementById('dia');
+  diaElement.innerHTML = padZero(dataHoraAtual.getDate());
+
+  const mesElement = document.getElementById('mes');
+  mesElement.innerHTML = padZero(dataHoraAtual.getMonth() + 1);
+
+  const anoElement = document.getElementById('ano');
+  anoElement.innerHTML = dataHoraAtual.getFullYear();
+}
+
+function padZero(numero) {
+  return numero < 10 ? `0${numero}` : numero;
+}
+
+// Atualiza o relógio a cada segundo
+setInterval(atualizarRelogio, 1000);
+
+  </script>
+</body>
+</html>
